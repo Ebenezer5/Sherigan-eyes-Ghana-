@@ -69,5 +69,10 @@ function validateForm() {
         return false;
     }
 
+    eye.classList.add('wink');
+    setTimeout(() => {
+    eye.classList.remove('wink')
+    }, 600);
+   
     return true;
 }

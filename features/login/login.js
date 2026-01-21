@@ -34,7 +34,6 @@ function loginUser() {
         return;
     }
 
-    alert('Login successful ✔');
 }
 
 createAccount.addEventListener('click', (e) => {
@@ -54,6 +53,11 @@ function validateLogin() {
         passwordError.textContent = "Password too short";
         return false;
     }
-
+   
+    eye.classList.add('wink');
+    setTimeout(() => {
+    eye.classList.remove('wink')
+    }, 600);
+   
     return true;
 }
