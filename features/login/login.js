@@ -13,7 +13,7 @@ form.addEventListener('submit', (e) => {
     if (validateLogin()) {
         loginUser();
     }
-    window.location.href = '../index.html';
+    window.location.href = '.index./index.html';
 });
 
 function loginUser() {
