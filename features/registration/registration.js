@@ -6,16 +6,23 @@ const inputEmail = document.getElementById('inputEmail');
 const inputPassword = document.getElementById('inputPassword');
 const inputConfirmPassword = document.getElementById('inputConfirmPassword');
 
+const nameError = document.getElementById('nameError');
+const contactError = document.getElementById('contactError');
+const emailError = document.getElementById('emailError');
+const passError = document.getElementById('passError');
+const confirmError = document.getElementById('confirmError');
+
+const eye = document.getElementById('eye');
+
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (validateForm()) {
-        saveUser();
-        alert('Registration successful ✔');
+    if (validateForm() && saveUser()) {
         form.reset();
-        window.location.href = '../login/login.html';
+        window.location.href = '../index/index.html';
     }
 });
+
 
 function getUsers() {
     return JSON.parse(localStorage.getItem('users')) || [];
@@ -28,17 +35,18 @@ function saveUser() {
         name: inputName.value.trim(),
         contact: inputContact.value.trim(),
         email: inputEmail.value.trim(),
-        password: inputPassword.value.trim()
+        password: inputPassword.value
     };
 
     const exists = users.some(user => user.email === newUser.email);
     if (exists) {
         alert('User already exists');
-        return;
+        return false;
     }
 
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
+    return true;
 }
 
 function validateForm() {
@@ -49,12 +57,13 @@ function validateForm() {
         return false;
     }
 
-    if (inputContact.value.trim().length < 10) {
-        contactError.textContent = "Invalid contact";
+    if (!/^\d{10,}$/.test(inputContact.value.trim())) {
+        contactError.textContent = "Invalid contact number";
         return false;
     }
+    
 
-    if (!inputEmail.value.includes('@')) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputEmail.value.trim())) {
         emailError.textContent = "Invalid email";
         return false;
     }
@@ -69,10 +78,11 @@ function validateForm() {
         return false;
     }
 
-    eye.classList.add('wink');
-    setTimeout(() => {
-    eye.classList.remove('wink')
-    }, 600);
-   
+    if (eye) {
+        eye.classList.add('wink');
+        setTimeout(() => eye.classList.remove('wink'), 600);
+    }
+    
+    
     return true;
 }
