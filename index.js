@@ -1,18 +1,18 @@
-const user = JSON.parse(localStorage.getItem("currentUser"));
+// const user = JSON.parse(localStorage.getItem("currentUser"));
 const welcomeUser = document.getElementById('welcome');
-const logoutBtn = document.getElementById("logoutBtn");
+const loginBtn = document.getElementById("loginBtn");
 
-if (!user) {
-    window.location.href = "../login/login.html";
-}
+// if (!user) {
+//     window.location.href = "../features/login/login.html";
+// }
 
-welcomeUser.textContent =`Welcome, ${user.name}`;
+// welcomeUser.textContent =`Welcome, ${user.name}`;
 
 
 
-logoutBtn.addEventListener("click", () => {
+loginBtn.addEventListener("click", () => {
     localStorage.removeItem("currentUser");
-    window.location.href = "../login/login.html";
+    window.location.href = "../features/login/login.html";
 });
 
 // Smooth scrolling
