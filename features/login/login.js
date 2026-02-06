@@ -4,24 +4,30 @@ const createAccount = document.getElementById('accountLink');
 const inputEmail = document.getElementById('inputEmail');
 const inputPassword = document.getElementById('inputPassword');
 
-const nameError = document.getElementById('nameError');
+const emailError = document.getElementById('emailError');
 const passwordError = document.getElementById('passwordError');
+const eye = document.getElementById('eye');
+
+const button = document.getElementById('btn')
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (validateLogin()) {
-        loginUser();
+    if (validateLogin() && loginUser()) {
+        console.log('Redirecting...');
+
+        window.location.href = '/index/index.html';
     }
-    window.location.href = '.index./index.html';
 });
+
+
 
 function loginUser() {
     const users = JSON.parse(localStorage.getItem('users'));
 
     if (!users) {
         alert('No users found');
-        return;
+        return false;
     }
 
     const user = users.find(user =>
@@ -31,21 +37,24 @@ function loginUser() {
 
     if (!user) {
         passwordError.textContent = 'Invalid login details';
-        return;
+        return false;
     }
 
+    // login successful
+    return true;
 }
 
 createAccount.addEventListener('click', (e) => {
     e.preventDefault();
     window.location.href = '../registration/registration.html';
+
 });
 
 function validateLogin() {
     document.querySelectorAll('.error-text').forEach(el => el.textContent = "");
 
     if (!inputEmail.value.trim()) {
-        nameError.textContent = "Email is required";
+        emailError.textContent = "Email is required"; // fixed variable
         return false;
     }
 
@@ -53,11 +62,13 @@ function validateLogin() {
         passwordError.textContent = "Password too short";
         return false;
     }
-   
-    eye.classList.add('wink');
-    setTimeout(() => {
-    eye.classList.remove('wink')
-    }, 600);
-   
+
+    if (eye) {
+        eye.classList.add('wink');
+        setTimeout(() => {
+            eye.classList.remove('wink');
+        }, 600);
+    }
+
     return true;
 }

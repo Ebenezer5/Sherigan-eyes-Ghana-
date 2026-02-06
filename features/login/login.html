@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sherigan Eyes Ghana - Login</title>
     <link rel="stylesheet" href="login.css">
-    <script src="/features/login/login.js" defer></script>
 </head>
 <body>
     <form action="" id="loginForm">
@@ -14,18 +13,18 @@
                 <span id="eye" class="eye">👁️</span>
             </h2>
             <p>Login</p>
-
-            <p>Login</p>
         
             <label>Email</label>
-            <input id="inputEmail" type="text" placeholder="Enter your Email">
-            <span id="nameError" class="error-text"></span>
+            <input id="inputEmail" type="email" placeholder="Enter your Email" required>
+            <span id="emailError" class="error-text"></span>
+
         
             <label>Password</label>
-            <input id="inputPassword" type="password" placeholder="Enter your password">
+            <input id="inputPassword" type="password" placeholder="Enter your password" required>
             <span id="passwordError" class="error-text"></span>
         
-            <button id="btn">Login</button>
+            <button id="btn" type="submit">Login</button>
+
             <br><br>
             
             <div class="accountLink">
@@ -36,7 +35,10 @@
             <div class="footer-text">
                 © 2026 Sherigan Eyes Ghana. All right reserved
             </div>
-        </div>      
+        </div>
+        
     </form>
+
+    <script src="login.js"></script>
 </body>
 </html>
